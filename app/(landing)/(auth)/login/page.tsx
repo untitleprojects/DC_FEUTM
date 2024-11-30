@@ -1,3 +1,29 @@
+'use client'
+
+import { useState } from 'react'
+import { Button, Input } from '@/components/common'
+
 export default function Page() {
-  return <h1>로그인 페이지</h1>
+  const [isLoading, setIsLoading] = useState(false)
+
+  const onSubmit = () => {
+    setIsLoading(true)
+    setTimeout(() => {
+      alert('로그인!!!')
+      setIsLoading(false)
+    }, 1000)
+  }
+
+  return (
+    <section className='flex flex-col gap-12 justify-center items-center w-full'>
+      <h1 className='font-bold text-lg'>로그인</h1>
+      <div className='flex flex-col w-full max-w-md gap-6'>
+        <Input label='이메일' id='email' type='email' error='이메일을 입력해주세요.' />
+        <Input label='비밀번호' id='password' type='password' error='비밀번호를 입력해주세요.' />
+        <Button variant='primary' onClick={onSubmit} isLoading={isLoading}>
+          로그인
+        </Button>
+      </div>
+    </section>
+  )
 }
