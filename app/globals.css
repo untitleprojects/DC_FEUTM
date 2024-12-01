@@ -5,9 +5,9 @@
 /* floating label css */
 input:focus ~ label,
 input:not(:placeholder-shown) ~ label {
-  @apply transform;
-  @apply scale-75;
-  @apply -translate-y-6;
-  @apply text-black;
-  @apply left-0;
+  @apply transform scale-75 -translate-y-4 text-black -left-1 pt-1;
+}
+
+input {
+  @apply mt-2 -mb-2;
 }
