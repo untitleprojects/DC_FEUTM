@@ -4,7 +4,7 @@ import React, { useRef, InputHTMLAttributes } from 'react'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string
-  error?: string
+  error?: string | null
   icon?: React.ReactNode
 }
 
