@@ -1,7 +1,10 @@
 import { useState, ChangeEvent } from 'react'
-import { ValidationErrors } from '@/types/common'
+import { ValidationErrors, CheckboxItem } from '@/types/common'
 
-export const useForm = <T>(initialValues: T, validate?: (data: T) => ValidationErrors) => {
+export const useForm = <T extends { [key: string]: any }>(
+  initialValues: T,
+  validate?: (data: T) => ValidationErrors,
+) => {
   const [values, setValues] = useState<T>(initialValues)
   const [errors, setErrors] = useState<ValidationErrors>({})
 
@@ -9,8 +12,21 @@ export const useForm = <T>(initialValues: T, validate?: (data: T) => ValidationE
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const target = e.target
     const { name, value, type } = target
-    const fieldValue = type === 'checkbox' ? (target as HTMLInputElement).checked : value
-    setValues({ ...values, [name]: fieldValue })
+
+    setValues((prevValues) => {
+      if (name === 'checkboxArr') {
+        const isChecked = (target as HTMLInputElement).checked
+        const updatedCheckboxArr = prevValues.checkboxArr.map((checkbox: CheckboxItem) =>
+          checkbox.label === value ? { ...checkbox, isChecked } : checkbox,
+        )
+        return { ...prevValues, checkboxArr: updatedCheckboxArr }
+      }
+
+      return {
+        ...prevValues,
+        [name]: type === 'number' ? Number(value) : value,
+      }
+    })
   }
 
   // 포커스 빠졌을떄 에러 있으면 표시
@@ -37,5 +53,5 @@ export const useForm = <T>(initialValues: T, validate?: (data: T) => ValidationE
     return true
   }
 
-  return { values, handleChange, handleBlur, validatedForm, resetForm, errors }
+  return { values, handleChange, handleBlur, validatedForm, resetForm, errors, setErrors }
 }

@@ -8,6 +8,6 @@ input:not(:placeholder-shown) ~ label {
   @apply transform scale-75 -translate-y-4 text-black -left-1 pt-1;
 }
 
-input {
+input:not([type='checkbox']) {
   @apply mt-2 -mb-2;
 }

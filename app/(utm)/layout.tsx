@@ -14,8 +14,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body>
-        대시보드(utm) 레이아웃(사이드바)
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   )

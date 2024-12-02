@@ -15,7 +15,7 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   const variants = {
-    primary: 'bg-blue-500 hover:bg-blue-600 focus:ring-blue-500',
+    primary: 'bg-indigo-500 hover:bg-indigo-600 focus:ring-indigo-500',
     secondary: 'bg-gray-500 hover:bg-gray-600 focus:ring-gray-500',
     danger: 'bg-red-500 hover:bg-red-600 focus:ring-red-500',
   }
@@ -30,7 +30,7 @@ const Button = ({
       disabled={isLoading || props.disabled}
       {...props}
     >
-      {isLoading ? <span className='flex items-center justify-center'>Loading...</span> : children}
+      {children}
     </button>
   )
 }

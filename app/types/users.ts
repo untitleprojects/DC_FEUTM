@@ -14,6 +14,6 @@ export interface LoginForm extends BaseUser {
 export interface SignUpForm extends BaseUser {
   password: string
   passwordCheck: string
-  authNumber: number
+  authNumber: string
   checkboxArr: CheckboxItem[]
 }

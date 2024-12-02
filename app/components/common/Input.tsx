@@ -14,7 +14,7 @@ const Input = ({ label, error, icon, className, ...props }: InputProps) => {
   return (
     <div>
       <div
-        className={`relative w-full flex items-center border rounded-md gap-2 px-4 py-2 focus-within:outline focus-within:outline-black ${className} `}
+        className={`relative w-full flex items-center border rounded-md gap-2 px-4 py-2 focus-within:outline focus-within:outline-black focus-within:z-10 ${className} `}
       >
         {icon && <div className='text-gray-500 w-6 h-6'>{icon}</div>}
         <div className='flex-1 relative '>

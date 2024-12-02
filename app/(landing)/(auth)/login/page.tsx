@@ -4,7 +4,7 @@ import { FormEvent, useState } from 'react'
 import { Button, Input } from '@/components/common'
 import { useForm } from '@/hooks/useForm'
 import { LoginForm } from '@/types/users'
-import { loginValidate } from '@/utils/validates'
+import { loginValidate } from '@/utils/validate/authValidators'
 
 export default function Page() {
   const [isLoading, setIsLoading] = useState(false)
@@ -19,15 +19,16 @@ export default function Page() {
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault()
 
-    // 입력값 에러있으면 취소
     if (!validatedForm()) return
 
     setIsLoading(true)
+
+    // TODO: 로그인 API
     setTimeout(() => {
-      alert('로그인!!!')
+      alert('로그인 성공!!!')
       resetForm()
       setIsLoading(false)
-    }, 1000)
+    }, 500)
   }
 
   return (
