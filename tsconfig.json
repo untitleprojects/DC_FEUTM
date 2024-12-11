@@ -20,6 +20,7 @@
     ],
     "baseUrl": "./app",
     "paths": {
+      "@/assets/*": ["assets/*"],
       "@/apis/*": ["apis/*"],
       "@/components/*": ["components/*"],
       "@/hooks/*": ["hooks/*"],
