@@ -7,7 +7,6 @@ export const postLogin = async (data: LoginForm) => {
     const response = await axios.post(`/login`, data)
     return response.data
   } catch (error) {
-    console.error('로그인 실패:', error)
     throw error
   }
 }

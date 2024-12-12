@@ -1,7 +1,7 @@
 import { useState, ChangeEvent } from 'react'
 import { ValidationErrors, CheckboxItem } from '@/types/common'
 
-export const useForm = <T extends { [key: string]: any }>(
+export const useForm = <T extends Record<string, unknown>>(
   initialValues: T,
   validate?: (data: T) => ValidationErrors,
 ) => {
@@ -16,8 +16,9 @@ export const useForm = <T extends { [key: string]: any }>(
     setValues((prevValues) => {
       if (name === 'checkboxArr') {
         const isChecked = (target as HTMLInputElement).checked
-        const updatedCheckboxArr = prevValues.checkboxArr.map((checkbox: CheckboxItem) =>
-          checkbox.label === value ? { ...checkbox, isChecked } : checkbox,
+        const updatedCheckboxArr = (prevValues.checkboxArr as CheckboxItem[]).map(
+          (checkbox: CheckboxItem) =>
+            checkbox.label === value ? { ...checkbox, isChecked } : checkbox,
         )
         return { ...prevValues, checkboxArr: updatedCheckboxArr }
       }

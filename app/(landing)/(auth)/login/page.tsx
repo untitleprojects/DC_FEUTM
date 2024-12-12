@@ -5,6 +5,7 @@ import { Button, Input } from '@/components/common'
 import { useForm } from '@/hooks/useForm'
 import { LoginForm } from '@/types/users'
 import { loginValidate } from '@/utils/validate/authValidators'
+import { postLogin } from '@/apis/auth'
 
 export default function Page() {
   const [isLoading, setIsLoading] = useState(false)
@@ -23,12 +24,17 @@ export default function Page() {
 
     setIsLoading(true)
 
-    // TODO: 로그인 API
-    setTimeout(() => {
-      alert('로그인 성공!!!')
-      resetForm()
+    try {
+      const data = await postLogin(values)
+      if (data) {
+        alert('로그인성공!')
+        resetForm()
+      }
+    } catch (error) {
+      console.error(error)
+    } finally {
       setIsLoading(false)
-    }, 500)
+    }
   }
 
   return (

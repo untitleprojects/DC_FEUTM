@@ -2,6 +2,7 @@ import { CheckboxItem } from '@/types/common'
 
 // 유저 타입
 export interface BaseUser {
+  [key: string]: unknown
   email: string
 }
 

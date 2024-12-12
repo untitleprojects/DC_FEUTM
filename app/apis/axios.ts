@@ -1,4 +1,5 @@
 import _axios from 'axios'
+import { CustomError } from '@/utils/common/customError'
 
 const axios = _axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api',
@@ -34,11 +35,13 @@ axios.interceptors.response.use(
   (error) => {
     if (error.response) {
       // 서버가 응답을 반환한 경우 (4xx, 5xx)
-      console.error('[Response Error]', error.response.data)
+      // console.error('[Response Error]', error.response.data)
       if (error.response.status === 401) {
         alert('인증이 만료되었습니다. 다시 로그인해주세요.')
         window.location.href = '/login'
       }
+      // 여기서 상태 코드에 따라 커스텀 에러 나눠서 return
+      return Promise.reject(new CustomError('로그인실패'))
     } else if (error.request) {
       // 요청이 전송되었지만 응답을 받지 못한 경우
       console.error('[No Response]', error.request)
